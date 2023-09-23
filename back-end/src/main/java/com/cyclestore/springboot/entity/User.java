@@ -2,16 +2,19 @@ package com.cyclestore.springboot.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "user")
+
 public class User {
     /*
-    * properties
-    * entity relation
-    * constructors
-    * getters, setters
-    * methods
-    * */
+     * properties
+     * entity relation
+     * constructors
+     * getters, setters
+     * methods
+     * */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +36,15 @@ public class User {
     private int phoneNumber;
     @Column(name = "isadmin")
     private boolean isAdmin;
+
+    //Join table
+    @ManyToMany
+    @JoinTable(
+            name = "user_product",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "pro_id")
+    )
+    private List<UserProduct> users;
 
     public User() {
     }

@@ -3,23 +3,24 @@ package com.cyclestore.springboot.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
 public class Product {
     /*
-    * properties
-    * entity relation
-    * constructor
-    * getters, setters
-    * method
-    * */
+     * properties
+     * entity relation
+     * constructor
+     * getters, setters
+     * method
+     * */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "sku", unique=true)
+    @Column(name = "sku", unique = true)
     private String sku;
     @Column(name = "name")
     private String name;
@@ -33,6 +34,20 @@ public class Product {
     private int stock;
     @Column(name = "is_active")
     private boolean isActive;
+
+    @ManyToOne(
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "cate_id", foreignKey = @ForeignKey(name="fk_category"))
+    private Category category;
+
+    //Join table
+    @ManyToMany
+    @JoinTable(
+            name = "user_product",
+            joinColumns = @JoinColumn(name = "pro_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<UserProduct> products;
 
     public Product() {
     }
@@ -125,3 +140,4 @@ public class Product {
                 '}';
     }
 }
+

@@ -2,6 +2,8 @@ package com.cyclestore.springboot.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "category")
 public class Category {
@@ -19,6 +21,10 @@ public class Category {
     private int id;
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "category",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Product> products;
 
     public Category() {
     }
@@ -51,3 +57,4 @@ public class Category {
                 '}';
     }
 }
+

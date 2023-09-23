@@ -35,7 +35,7 @@ public class Product {
     @Column(name = "is_active")
     private boolean isActive;
 
-    @ManyToOne(
+    @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "cate_id", foreignKey = @ForeignKey(name="fk_category"))
     private Category category;

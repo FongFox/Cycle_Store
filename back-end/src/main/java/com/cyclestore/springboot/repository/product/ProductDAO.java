@@ -1,4 +1,4 @@
-package com.cyclestore.springboot.repository;
+package com.cyclestore.springboot.repository.product;
 
 import com.cyclestore.springboot.entity.Product;
 import jakarta.persistence.EntityManager;
@@ -18,13 +18,29 @@ public class ProductDAO implements IProductDAO{
     }
 
     @Override
-    public List<Product> getAll() {
+    public List<Product> getProducts() {
         //create get all product (query)
         TypedQuery<Product> query =
-                entityManager.createQuery("from product", Product.class);
+                entityManager.createQuery("from Product", Product.class);
         //execute this query
         List<Product> products = query.getResultList();
         //return data back
         return products;
+    }
+
+    @Override
+    public Product getProductById(int productId) {
+        Product product = entityManager.find(Product.class, productId);
+        return product;
+    }
+
+    @Override
+    public Product saveProduct(Product product) {
+        return entityManager.merge(product);
+    }
+
+    @Override
+    public void deleteProduct(Product product) {
+        entityManager.remove(product);
     }
 }

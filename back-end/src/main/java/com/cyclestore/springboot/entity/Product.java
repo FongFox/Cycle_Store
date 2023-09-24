@@ -3,6 +3,7 @@ package com.cyclestore.springboot.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,7 +30,7 @@ public class Product {
     @Column(name = "description")
     private String description;
     @Column(name = "price")
-    private BigDecimal price;
+    private Double price;
     @Column(name = "stock")
     private int stock;
     @Column(name = "is_active")
@@ -52,7 +53,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String sku, String name, String image, String description, BigDecimal price, int stock, boolean isActive) {
+    public Product(String sku, String name, String image, String description, Double price, int stock, boolean isActive) {
         this.sku = sku;
         this.name = name;
         this.image = image;
@@ -102,11 +103,11 @@ public class Product {
         this.description = description;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

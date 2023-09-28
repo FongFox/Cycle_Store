@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class ProductRestController implements IProductRestController{
+public class ProductRESTController implements IProductRESTController {
     private IProductService productService;
 
-    public ProductRestController(IProductService productService) {
+    public ProductRESTController(IProductService productService) {
         this.productService = productService;
     }
 
@@ -21,12 +21,21 @@ public class ProductRestController implements IProductRestController{
     }
 
     @Override
+    public List<Product> getsProductsByCateId(int categoryId) {
+        List<Product> products = productService.getProductsByCateId(categoryId);
+        if (products == null) {
+            throw new RuntimeException("Product not found with this category's id = " + categoryId);
+        } else {
+            return products;
+        }
+    }
+
+    @Override
     public Product getProductsDetail(int productId) {
         Product product = productService.getProductById(productId);
         if (product == null) {
-            throw new RuntimeException("Product not found with this id = " + productId);
-        }
-        else {
+            throw new RuntimeException("Product not found with product's id = " + productId);
+        } else {
             return product;
         }
     }
@@ -47,7 +56,7 @@ public class ProductRestController implements IProductRestController{
     @Override
     public String deleteProduct(int productId) {
         Product product = productService.getProductById(productId);
-        if(product == null) {
+        if (product == null) {
             throw new RuntimeException("Product not found at id: " + productId);
         } else {
             productService.deleteProduct(product);

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class CategoryDAO implements ICategoryDAO{
+public class CategoryDAO implements ICategoryDAO {
     private EntityManager entityManager;
 
     @Autowired

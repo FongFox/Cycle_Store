@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class CategoryRestController implements ICategoryRestController{
+public class CategoryRESTController implements ICategoryRESTController {
     private ICategoryService categoryService;
 
-    public CategoryRestController(ICategoryService categoryService) {
+    public CategoryRESTController(ICategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
@@ -23,10 +23,9 @@ public class CategoryRestController implements ICategoryRestController{
     @Override
     public Category getCategoriesDetail(int categoryId) {
         Category category = categoryService.getCategoryById(categoryId);
-        if(category == null) {
+        if (category == null) {
             throw new RuntimeException("Category not found with this id: " + categoryId);
-        }
-        else {
+        } else {
             return category;
         }
     }

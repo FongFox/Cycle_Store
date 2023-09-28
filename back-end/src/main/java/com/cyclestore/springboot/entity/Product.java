@@ -2,10 +2,6 @@ package com.cyclestore.springboot.entity;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Table(name = "product")
 public class Product {
@@ -33,22 +29,13 @@ public class Product {
     private Double price;
     @Column(name = "stock")
     private int stock;
-    @Column(name = "is_active")
+    @Column(name = "active")
     private boolean isActive;
 
-    @ManyToOne(fetch = FetchType.LAZY,
+    @ManyToOne(
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "cate_id", foreignKey = @ForeignKey(name="fk_category"))
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "fk_category"))
     private Category category;
-
-    //Join table
-    @ManyToMany
-    @JoinTable(
-            name = "user_product",
-            joinColumns = @JoinColumn(name = "pro_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private List<UserProduct> products;
 
     public Product() {
     }
@@ -127,6 +114,14 @@ public class Product {
         isActive = active;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -141,4 +136,5 @@ public class Product {
                 '}';
     }
 }
+
 

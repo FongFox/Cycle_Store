@@ -1,5 +1,4 @@
 package com.cyclestore.springboot.repository.category;
-
 import com.cyclestore.springboot.entity.Category;
 
 import java.util.List;

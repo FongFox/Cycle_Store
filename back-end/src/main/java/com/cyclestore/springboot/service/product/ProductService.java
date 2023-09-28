@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
     private IProductDAO productDAO;
 
     @Autowired
@@ -20,6 +20,11 @@ public class ProductService implements IProductService{
     @Override
     public List<Product> getProducts() {
         return productDAO.getProducts();
+    }
+
+    @Override
+    public List<Product> getProductsByCateId(int categoryId) {
+        return productDAO.getProductsByCateId(categoryId);
     }
 
     @Override

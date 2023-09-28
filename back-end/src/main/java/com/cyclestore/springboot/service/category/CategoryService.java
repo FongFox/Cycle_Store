@@ -1,7 +1,6 @@
 package com.cyclestore.springboot.service.category;
 
 import com.cyclestore.springboot.entity.Category;
-import com.cyclestore.springboot.repository.category.CategoryDAO;
 import com.cyclestore.springboot.repository.category.ICategoryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class CategoryService implements ICategoryService{
+public class CategoryService implements ICategoryService {
     private ICategoryDAO categoryDAO;
 
     @Autowired

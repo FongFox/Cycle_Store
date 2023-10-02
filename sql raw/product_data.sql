@@ -6,7 +6,7 @@ VALUES
 	("Mountain Bike"), ("Touring Bike"), ("City Bike"), ("Accessories");
 
 -- create product data
-INSERT INTO product (sku, name, image, description, price, stock, is_active, cate_id)
+INSERT INTO product (sku, name, image, description, price, stock, active, category_id)
 VALUES 
 	-- create moutain bike data
 	("mb01", "product 01", "example_image", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", 10.99, 10, true, 1),

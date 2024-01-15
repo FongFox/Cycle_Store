@@ -1,2 +1,2 @@
 # Cycle Store
-## Shopping website using spring boot, thymeleaf (template engine), mySQL.
+## Shopping website using spring boot, mySQL.
